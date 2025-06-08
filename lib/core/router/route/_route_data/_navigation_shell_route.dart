@@ -1,6 +1,6 @@
 part of '../route.dart';
 
-/// タブのナビゲーターを設定
+/// ナビゲーションバーを含めた土台のシェルルート。
 class NavigationShellRoute extends StatefulShellRouteData {
   const NavigationShellRoute();
 
