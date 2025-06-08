@@ -1,55 +1,99 @@
 part of '../screen.dart';
 
+enum _NavigationType {
+  go,
+  push,
+  replace,
+}
+
 /// ユーザー間のナビゲーションを行うボタン
-class _NavigationButtons extends StatelessWidget {
+class _NavigationButtons extends HookWidget {
   const _NavigationButtons({
     required this.currentUserId,
   });
 
   final int currentUserId;
-
-  bool get isPreviousAvailable => currentUserId != 1;
-
-  bool get isNextAvailable => currentUserId < User.list.length;
+  bool get _isPreviousAvailable => currentUserId != 1;
+  bool get _isNextAvailable => currentUserId < User.list.length;
 
   @override
   Widget build(BuildContext context) {
+    final navigationType = useState<_NavigationType>(_NavigationType.replace);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 32),
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        spacing: 16,
         children: [
-          // 前の人ボタン
-          Expanded(
-            child: ElevatedButton.icon(
-              onPressed: isPreviousAvailable
-                  ? () {
-                      final userId = currentUserId - 1;
-                      DetailRoute(userId: userId).go(context);
-                    }
-                  : null,
-              icon: const Icon(Icons.arrow_back),
-              label: const Text('前の人'),
-            ),
+          Row(
+            spacing: 16,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // 前の人ボタン
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: _isPreviousAvailable
+                      ? () => _navigateToUser(
+                            context,
+                            navigationType.value,
+                            shouldNext: false,
+                          )
+                      : null,
+                  icon: const Icon(Icons.arrow_back),
+                  label: const Text('前の人'),
+                ),
+              ),
+              // 次の人ボタン
+              Expanded(
+                child: ElevatedButton.icon(
+                  iconAlignment: IconAlignment.end,
+                  onPressed: _isNextAvailable
+                      ? () => _navigateToUser(
+                            context,
+                            navigationType.value,
+                            shouldNext: true,
+                          )
+                      : null,
+                  icon: const Icon(Icons.arrow_forward),
+                  label: const Text('次の人'),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(width: 16),
-          // 次の人ボタン
-          Expanded(
-            child: ElevatedButton.icon(
-              iconAlignment: IconAlignment.end,
-              onPressed: isNextAvailable
-                  ? () {
-                      final userId = currentUserId + 1;
-                      DetailRoute(userId: userId).go(context);
-                    }
-                  : null,
-              icon: const Icon(Icons.arrow_forward),
-              label: const Text('次の人'),
-            ),
+          const Text('推奨設定は replace です'),
+          SegmentedButton<_NavigationType>(
+            segments: const <ButtonSegment<_NavigationType>>[
+              ButtonSegment(value: _NavigationType.go, label: Text('go')),
+              ButtonSegment(value: _NavigationType.push, label: Text('push')),
+              ButtonSegment(
+                  value: _NavigationType.replace, label: Text('replace')),
+            ],
+            selected: <_NavigationType>{navigationType.value},
+            onSelectionChanged: (newSelection) {
+              navigationType.value = newSelection.first;
+            },
           ),
         ],
       ),
     );
+  }
+}
+
+extension on _NavigationButtons {
+  /// ここは本当はreplaceを使うべきだが、検証のためにあえて選べるようにしている
+  void _navigateToUser(
+    BuildContext context,
+    _NavigationType type, {
+    required bool shouldNext,
+  }) {
+    final userId = shouldNext ? currentUserId + 1 : currentUserId - 1;
+    switch (type) {
+      case _NavigationType.go:
+        DetailRoute(userId: userId).go(context);
+      case _NavigationType.push:
+        DetailRoute(userId: userId).push<void>(context);
+      case _NavigationType.replace:
+        DetailRoute(userId: userId).replace(context);
+    }
   }
 }
