@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/core/router/navigation_bar/app_navigation_bar.dart';
+import 'package:go_router_builder_sample/presentation/screens/app_root/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/home/screen.dart';
@@ -63,13 +64,7 @@ class AppShellRoute extends ShellRouteData {
   static final GlobalKey<NavigatorState> $navigationKey = rootNavigationKey;
 
   @override
-  Widget builder(
-    BuildContext context,
-    GoRouterState state,
-    Widget navigator,
-  ) {
-    return Scaffold(
-      body: navigator,
-    );
+  Widget builder(BuildContext context, GoRouterState state, Widget navigator) {
+    return AppRootScreen(navigator: navigator);
   }
 }
