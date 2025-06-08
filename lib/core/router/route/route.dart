@@ -5,6 +5,7 @@ import 'package:go_router_builder_sample/presentation/screens/app_root/screen.da
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/home/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/navigation/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/settings/screen.dart';
 
 part '_route_data/_branch_data.dart';
