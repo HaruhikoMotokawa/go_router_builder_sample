@@ -15,10 +15,10 @@ class User {
   /// ユーザーIDでユーザーを取得するファクトリメソッド。
   ///
   /// ユーザーが見つからない場合は、デフォルトのユーザーを返す。
-  factory User.getById(String id) {
+  factory User.getById(int id) {
     return list.firstWhere((user) => user.id == id,
         orElse: () => User(
-              id: '0',
+              id: 0,
               name: 'Unknown',
               image: Icons.error,
               color: Colors.grey,
@@ -29,7 +29,7 @@ class User {
             ));
   }
 
-  final String id;
+  final int id;
   final String name;
   final IconData image;
   final MaterialColor color;
@@ -40,7 +40,7 @@ class User {
 
   static List<User> list = [
     User(
-      id: '1',
+      id: 1,
       name: 'アリス',
       image: Icons.face,
       color: Colors.red,
@@ -50,7 +50,7 @@ class User {
       favoriteFood: '寿司',
     ),
     User(
-      id: '2',
+      id: 2,
       name: 'ボブ',
       image: Icons.person,
       color: Colors.blue,
@@ -60,7 +60,7 @@ class User {
       favoriteFood: 'ラーメン',
     ),
     User(
-      id: '3',
+      id: 3,
       name: 'キャロル',
       image: Icons.tag_faces,
       color: Colors.green,
@@ -70,7 +70,7 @@ class User {
       favoriteFood: 'カレー',
     ),
     User(
-      id: '4',
+      id: 4,
       name: 'ダン',
       image: Icons.sentiment_satisfied,
       color: Colors.orange,
@@ -80,7 +80,7 @@ class User {
       favoriteFood: '焼肉',
     ),
     User(
-      id: '5',
+      id: 5,
       name: 'エミリー',
       image: Icons.emoji_people,
       color: Colors.purple,
@@ -90,7 +90,7 @@ class User {
       favoriteFood: 'パスタ',
     ),
     User(
-      id: '6',
+      id: 6,
       name: 'フランク',
       image: Icons.mood,
       color: Colors.cyan,
@@ -100,7 +100,7 @@ class User {
       favoriteFood: 'うどん',
     ),
     User(
-      id: '7',
+      id: 7,
       name: 'グレース',
       image: Icons.account_circle,
       color: Colors.teal,
@@ -110,7 +110,7 @@ class User {
       favoriteFood: 'オムライス',
     ),
     User(
-      id: '8',
+      id: 8,
       name: 'ヘンリー',
       image: Icons.person_outline,
       color: Colors.indigo,
@@ -120,7 +120,7 @@ class User {
       favoriteFood: 'ピザ',
     ),
     User(
-      id: '9',
+      id: 9,
       name: 'イザベル',
       image: Icons.emoji_emotions,
       color: Colors.pink,
@@ -130,7 +130,7 @@ class User {
       favoriteFood: 'サラダ',
     ),
     User(
-      id: '10',
+      id: 10,
       name: 'ジャック',
       image: Icons.sentiment_very_satisfied,
       color: Colors.amber,

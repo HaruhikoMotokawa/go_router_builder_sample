@@ -6,24 +6,14 @@ class _NavigationButtons extends StatelessWidget {
     required this.currentUserId,
   });
 
-  final String currentUserId;
+  final int currentUserId;
 
-  bool get isPreviousAvailable {
-    final currentIndex =
-        User.list.indexWhere((user) => user.id == currentUserId);
-    return currentIndex > 0;
-  }
+  bool get isPreviousAvailable => currentUserId != 1;
+
+  bool get isNextAvailable => currentUserId < User.list.length;
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex =
-        User.list.indexWhere((user) => user.id == currentUserId);
-    final hasPrevious = currentIndex > 0;
-    final hasNext = currentIndex < User.list.length - 1 && currentIndex >= 0;
-
-    final prevUserId = hasPrevious ? User.list[currentIndex - 1].id : null;
-    final nextUserId = hasNext ? User.list[currentIndex + 1].id : null;
-
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 32),
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -33,11 +23,10 @@ class _NavigationButtons extends StatelessWidget {
           // 前の人ボタン
           Expanded(
             child: ElevatedButton.icon(
-              onPressed: hasPrevious
+              onPressed: isPreviousAvailable
                   ? () {
-                      if (prevUserId != null) {
-                        context.go('/detail/$prevUserId');
-                      }
+                      final userId = currentUserId - 1;
+                      DetailRoute(userId: userId).replace(context);
                     }
                   : null,
               icon: const Icon(Icons.arrow_back),
@@ -49,11 +38,10 @@ class _NavigationButtons extends StatelessWidget {
           Expanded(
             child: ElevatedButton.icon(
               iconAlignment: IconAlignment.end,
-              onPressed: hasNext
+              onPressed: isNextAvailable
                   ? () {
-                      if (nextUserId != null) {
-                        context.go('/detail/$nextUserId');
-                      }
+                      final userId = currentUserId + 1;
+                      DetailRoute(userId: userId).replace(context);
                     }
                   : null,
               icon: const Icon(Icons.arrow_forward),
