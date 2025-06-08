@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/domain/user.dart';
 
 part 'components/_image_container.dart';
 part 'components/_info_card.dart';
 part 'components/_name_text.dart';
+part 'components/_navigation_buttons.dart';
 
 class DetailScreen extends ConsumerWidget {
   const DetailScreen({required this.userId, super.key});
@@ -37,6 +39,9 @@ class DetailScreen extends ConsumerWidget {
               _InfoCard(label: '趣味', value: user.hobby),
               _InfoCard(label: '職業', value: user.job),
               _InfoCard(label: '好きな食べ物', value: user.favoriteFood),
+
+              // ナビゲーションボタン
+              _NavigationButtons(currentUserId: userId),
             ],
           ),
         ),
