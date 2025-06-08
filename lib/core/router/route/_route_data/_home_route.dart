@@ -1,6 +1,6 @@
 part of '../route.dart';
 
-class HomeRoute extends GoRouteData {
+class HomeRoute extends GoRouteData with _$HomeRoute {
   const HomeRoute();
 
   static const String path = '/';

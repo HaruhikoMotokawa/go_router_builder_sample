@@ -1,6 +1,6 @@
 part of '../route.dart';
 
-class HelpRoute extends GoRouteData {
+class HelpRoute extends GoRouteData with _$HelpRoute {
   const HelpRoute();
 
   static const String path = 'help';
