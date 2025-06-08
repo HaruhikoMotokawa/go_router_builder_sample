@@ -26,7 +26,7 @@ class _NavigationButtons extends StatelessWidget {
               onPressed: isPreviousAvailable
                   ? () {
                       final userId = currentUserId - 1;
-                      DetailRoute(userId: userId).replace(context);
+                      DetailRoute(userId: userId).go(context);
                     }
                   : null,
               icon: const Icon(Icons.arrow_back),
@@ -41,7 +41,7 @@ class _NavigationButtons extends StatelessWidget {
               onPressed: isNextAvailable
                   ? () {
                       final userId = currentUserId + 1;
-                      DetailRoute(userId: userId).replace(context);
+                      DetailRoute(userId: userId).go(context);
                     }
                   : null,
               icon: const Icon(Icons.arrow_forward),
