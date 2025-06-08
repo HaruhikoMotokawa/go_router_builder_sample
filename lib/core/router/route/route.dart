@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:go_router_builder_sample/core/router/navigation_bar/app_navigation_bar.dart';
+import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/home/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/settings/screen.dart';
+
+part '_route_data/_branch_data.dart';
+part '_route_data/_detail_route.dart';
+part '_route_data/_help_route.dart';
+part '_route_data/_home_route.dart';
+part '_route_data/_navigation_shell_route.dart';
+part '_route_data/_settings_route.dart';
+part 'route.g.dart';
+
+/// アプリケーション全体のナビゲーションを管理するためのキー。
+/// このキーを使うことで、アプリケーションのどこからでも
+/// ナビゲーターに直接アクセスし、画面遷移を制御することができる。
+final rootNavigationKey = GlobalKey<NavigatorState>();
+
+// 大元のルート
+@TypedShellRoute<AppShellRoute>(
+  routes: [
+    // ログイン後の画面 ここから ---->
+    TypedStatefulShellRoute<NavigationShellRoute>(
+      branches: [
+        TypedStatefulShellBranch<HomeBranch>(
+          routes: [
+            TypedGoRoute<HomeRoute>(
+              path: HomeRoute.path,
+              name: HomeRoute.name,
+            ),
+          ],
+        ),
+        TypedStatefulShellBranch<SettingsBranch>(
+          routes: [
+            TypedGoRoute<SettingsRoute>(
+              path: SettingsRoute.path,
+              name: SettingsRoute.name,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ],
+)
+class AppShellRoute extends ShellRouteData {
+  const AppShellRoute();
+
+  static final GlobalKey<NavigatorState> $navigationKey = rootNavigationKey;
+
+  @override
+  Widget builder(
+    BuildContext context,
+    GoRouterState state,
+    Widget navigator,
+  ) {
+    return Scaffold(
+      body: navigator,
+    );
+  }
+}
