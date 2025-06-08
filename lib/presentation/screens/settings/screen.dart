@@ -28,7 +28,7 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             Text(
               'User',
-              style: Theme.of(context).textTheme.headlineLarge,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             ListTile(
               leading: Icon(_owner.image, color: _owner.color),
