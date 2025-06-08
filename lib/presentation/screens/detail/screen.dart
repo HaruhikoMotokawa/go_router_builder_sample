@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
 import 'package:go_router_builder_sample/domain/user.dart';
 
@@ -8,13 +8,13 @@ part 'components/_info_card.dart';
 part 'components/_name_text.dart';
 part 'components/_navigation_buttons.dart';
 
-class DetailScreen extends ConsumerWidget {
+class DetailScreen extends StatelessWidget {
   const DetailScreen({required this.userId, super.key});
 
   final int userId;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final user = User.getById(userId);
 
     return Scaffold(
