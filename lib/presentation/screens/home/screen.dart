@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             return ListTile(
               leading: Icon(user.image, color: user.color),
               title: Text(user.name),
-              onTap: () => const DetailRoute().go(context),
+              onTap: () => DetailRoute(userId: user.id).go(context),
             );
           },
         ),

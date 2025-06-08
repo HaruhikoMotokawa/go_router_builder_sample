@@ -11,6 +11,24 @@ class User {
     required this.job,
     required this.favoriteFood,
   });
+
+  /// ユーザーIDでユーザーを取得するファクトリメソッド。
+  ///
+  /// ユーザーが見つからない場合は、デフォルトのユーザーを返す。
+  factory User.getById(String id) {
+    return list.firstWhere((user) => user.id == id,
+        orElse: () => User(
+              id: '0',
+              name: 'Unknown',
+              image: Icons.error,
+              color: Colors.grey,
+              age: 0,
+              hobby: 'Unknown',
+              job: 'Unknown',
+              favoriteFood: 'Unknown',
+            ));
+  }
+
   final String id;
   final String name;
   final IconData image;
