@@ -36,6 +36,10 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
                     path: DetailRoute.path,
                     name: DetailRoute.name,
                   ),
+                  TypedGoRoute<HelpRoute>(
+                    path: HelpRoute.path,
+                    name: HelpRoute.name,
+                  ),
                 ]),
           ],
         ),
@@ -44,12 +48,6 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
             TypedGoRoute<SettingsRoute>(
               path: SettingsRoute.path,
               name: SettingsRoute.name,
-              routes: [
-                TypedGoRoute<HelpRoute>(
-                  path: HelpRoute.path,
-                  name: HelpRoute.name,
-                ),
-              ],
             ),
           ],
         ),
