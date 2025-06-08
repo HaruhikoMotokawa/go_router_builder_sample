@@ -1,6 +1,6 @@
 part of '../route.dart';
 
-class SettingsRoute extends GoRouteData {
+class SettingsRoute extends GoRouteData with _$SettingsRoute {
   const SettingsRoute();
 
   static const String path = '/settings';
