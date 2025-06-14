@@ -36,19 +36,20 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
                     path: DetailRoute.path,
                     name: DetailRoute.name,
                   ),
-                  TypedGoRoute<HelpRoute>(
-                    path: HelpRoute.path,
-                    name: HelpRoute.name,
-                  ),
                 ]),
           ],
         ),
         TypedStatefulShellBranch<SettingsBranch>(
           routes: [
             TypedGoRoute<SettingsRoute>(
-              path: SettingsRoute.path,
-              name: SettingsRoute.name,
-            ),
+                path: SettingsRoute.path,
+                name: SettingsRoute.name,
+                routes: [
+                  TypedGoRoute<HelpRoute>(
+                    path: HelpRoute.path,
+                    name: HelpRoute.name,
+                  ),
+                ]),
           ],
         ),
       ],

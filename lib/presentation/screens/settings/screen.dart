@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
 import 'package:go_router_builder_sample/domain/user.dart';
 import 'package:go_router_builder_sample/presentation/shared/help_button.dart';
@@ -35,6 +36,10 @@ class SettingsScreen extends ConsumerWidget {
               title: Text(_owner.name),
               onTap: () => DetailRoute(userId: _owner.id).push<void>(context),
             ),
+            ElevatedButton(
+              onPressed: () => context.go('/fake_path'),
+              child: const Text('不正なパスで遷移する'),
+            )
           ],
         ),
       ),
