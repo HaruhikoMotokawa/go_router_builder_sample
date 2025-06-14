@@ -66,7 +66,9 @@ class _NavigationButtons extends HookWidget {
               ButtonSegment(value: _NavigationType.go, label: Text('go')),
               ButtonSegment(value: _NavigationType.push, label: Text('push')),
               ButtonSegment(
-                  value: _NavigationType.replace, label: Text('replace')),
+                value: _NavigationType.replace,
+                label: Text('replace'),
+              ),
             ],
             selected: <_NavigationType>{navigationType.value},
             onSelectionChanged: (newSelection) {

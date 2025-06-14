@@ -39,7 +39,7 @@ class SettingsScreen extends ConsumerWidget {
             ElevatedButton(
               onPressed: () => context.go('/fake_path'),
               child: const Text('不正なパスで遷移する'),
-            )
+            ),
           ],
         ),
       ),

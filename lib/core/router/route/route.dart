@@ -29,27 +29,29 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
         TypedStatefulShellBranch<HomeBranch>(
           routes: [
             TypedGoRoute<HomeRoute>(
-                path: HomeRoute.path,
-                name: HomeRoute.name,
-                routes: [
-                  TypedGoRoute<DetailRoute>(
-                    path: DetailRoute.path,
-                    name: DetailRoute.name,
-                  ),
-                ]),
+              path: HomeRoute.path,
+              name: HomeRoute.name,
+              routes: [
+                TypedGoRoute<DetailRoute>(
+                  path: DetailRoute.path,
+                  name: DetailRoute.name,
+                ),
+              ],
+            ),
           ],
         ),
         TypedStatefulShellBranch<SettingsBranch>(
           routes: [
             TypedGoRoute<SettingsRoute>(
-                path: SettingsRoute.path,
-                name: SettingsRoute.name,
-                routes: [
-                  TypedGoRoute<HelpRoute>(
-                    path: HelpRoute.path,
-                    name: HelpRoute.name,
-                  ),
-                ]),
+              path: SettingsRoute.path,
+              name: SettingsRoute.name,
+              routes: [
+                TypedGoRoute<HelpRoute>(
+                  path: HelpRoute.path,
+                  name: HelpRoute.name,
+                ),
+              ],
+            ),
           ],
         ),
       ],
