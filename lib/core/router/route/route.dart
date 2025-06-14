@@ -21,6 +21,7 @@ part 'route.g.dart';
 /// ナビゲーターに直接アクセスし、画面遷移を制御することができる。
 final rootNavigationKey = GlobalKey<NavigatorState>();
 
+/// アプリケーションの大元に位置するシェルルート
 // このアノテーションはAppShellRouteにつける必要がある
 @TypedShellRoute<AppShellRoute>(
   routes: [
@@ -36,6 +37,15 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
                     path: DetailRoute.path,
                     name: DetailRoute.name,
                   ),
+                ]),
+          ],
+        ),
+        TypedStatefulShellBranch<SettingsBranch>(
+          routes: [
+            TypedGoRoute<SettingsRoute>(
+                path: SettingsRoute.path,
+                name: SettingsRoute.name,
+                routes: [
                   TypedGoRoute<HelpRoute>(
                     path: HelpRoute.path,
                     name: HelpRoute.name,
@@ -43,20 +53,10 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
                 ]),
           ],
         ),
-        TypedStatefulShellBranch<SettingsBranch>(
-          routes: [
-            TypedGoRoute<SettingsRoute>(
-              path: SettingsRoute.path,
-              name: SettingsRoute.name,
-            ),
-          ],
-        ),
       ],
     ),
   ],
 )
-
-/// アプリケーションの大元に位置するシェルルート。
 class AppShellRoute extends ShellRouteData {
   const AppShellRoute();
 

@@ -11,7 +11,7 @@ class _ErrorPage extends HookWidget {
     useEffect(
       () {
         WidgetsBinding.instance.addPostFrameCallback((_) async {
-          final result = await showDialog<int>(
+          final isBackHome = await showDialog<bool>(
             context: context,
             builder: (context) {
               return AlertDialog(
@@ -19,14 +19,14 @@ class _ErrorPage extends HookWidget {
                 content: const Text('Page not found'),
                 actions: [
                   TextButton(
-                    onPressed: () => Navigator.of(context).pop(0),
+                    onPressed: () => Navigator.of(context).pop(true),
                     child: const Text('OK'),
                   ),
                 ],
               );
             },
           );
-          if (result == 0 && context.mounted) {
+          if (isBackHome != null && isBackHome && context.mounted) {
             context.go(const HomeRoute().location);
           }
         });
