@@ -8,10 +8,11 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'app_router.g.dart';
 part 'components/_error_page.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 GoRouter appRouter(Ref ref) {
   return GoRouter(
     debugLogDiagnostics: true,
+    initialLocation: const HomeRoute().location,
     routes: $appRoutes,
     errorPageBuilder: (context, state) => const MaterialPage(
       child: _ErrorPage(),

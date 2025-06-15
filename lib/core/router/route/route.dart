@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router_builder_sample/core/router/navigation_bar/app_navigation_bar.dart';
 import 'package:go_router_builder_sample/presentation/screens/app_root/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';

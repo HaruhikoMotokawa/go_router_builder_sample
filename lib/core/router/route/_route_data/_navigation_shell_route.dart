@@ -10,11 +10,6 @@ class NavigationShellRoute extends StatefulShellRouteData {
     GoRouterState state,
     StatefulNavigationShell navigationShell,
   ) {
-    return NavigationScreen(
-      navigationShell: navigationShell,
-      bottomNavigationBar: AppNavigationBar(
-        navigationShell: navigationShell,
-      ),
-    );
+    return NavigationScreen(navigationShell: navigationShell);
   }
 }
