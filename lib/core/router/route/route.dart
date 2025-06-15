@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/presentation/screens/app_root/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/deep_nested_settings/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/home/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/navigation/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/nested_settings/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/settings/screen.dart';
 
 part '_route_data/_branch_data.dart';
+part '_route_data/_deep_nested_settings_route.dart';
 part '_route_data/_detail_route.dart';
 part '_route_data/_help_route.dart';
 part '_route_data/_home_route.dart';
 part '_route_data/_navigation_shell_route.dart';
+part '_route_data/_nested_settings_route.dart';
 part '_route_data/_settings_route.dart';
 part 'route.g.dart';
 
@@ -48,6 +52,16 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
                 TypedGoRoute<HelpRoute>(
                   path: HelpRoute.path,
                   name: HelpRoute.name,
+                ),
+                TypedGoRoute<NestedSettingsRoute>(
+                  path: NestedSettingsRoute.path,
+                  name: NestedSettingsRoute.name,
+                  routes: [
+                    TypedGoRoute<DeepNestedSettingsRoute>(
+                      path: DeepNestedSettingsRoute.path,
+                      name: DeepNestedSettingsRoute.name,
+                    ),
+                  ],
                 ),
               ],
             ),
