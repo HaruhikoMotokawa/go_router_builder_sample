@@ -27,7 +27,7 @@ class _ErrorPage extends HookWidget {
             },
           );
           if (isBackHome != null && isBackHome && context.mounted) {
-            context.go(const HomeRoute().location);
+            const HomeRoute().go(context);
           }
         });
         return null;
@@ -35,7 +35,7 @@ class _ErrorPage extends HookWidget {
       [],
     );
     return const Scaffold(
-      body: SizedBox(),
+      body: SizedBox.shrink(),
     );
   }
 }

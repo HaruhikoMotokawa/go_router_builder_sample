@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_router_builder_sample/core/router/navigation_bar/app_navigation_bar.dart';
 import 'package:go_router_builder_sample/presentation/screens/app_root/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
@@ -30,27 +29,29 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
         TypedStatefulShellBranch<HomeBranch>(
           routes: [
             TypedGoRoute<HomeRoute>(
-                path: HomeRoute.path,
-                name: HomeRoute.name,
-                routes: [
-                  TypedGoRoute<DetailRoute>(
-                    path: DetailRoute.path,
-                    name: DetailRoute.name,
-                  ),
-                ]),
+              path: HomeRoute.path,
+              name: HomeRoute.name,
+              routes: [
+                TypedGoRoute<DetailRoute>(
+                  path: DetailRoute.path,
+                  name: DetailRoute.name,
+                ),
+              ],
+            ),
           ],
         ),
         TypedStatefulShellBranch<SettingsBranch>(
           routes: [
             TypedGoRoute<SettingsRoute>(
-                path: SettingsRoute.path,
-                name: SettingsRoute.name,
-                routes: [
-                  TypedGoRoute<HelpRoute>(
-                    path: HelpRoute.path,
-                    name: HelpRoute.name,
-                  ),
-                ]),
+              path: SettingsRoute.path,
+              name: SettingsRoute.name,
+              routes: [
+                TypedGoRoute<HelpRoute>(
+                  path: HelpRoute.path,
+                  name: HelpRoute.name,
+                ),
+              ],
+            ),
           ],
         ),
       ],
