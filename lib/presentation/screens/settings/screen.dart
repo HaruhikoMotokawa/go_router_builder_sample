@@ -41,12 +41,8 @@ class SettingsScreen extends ConsumerWidget {
                   onTap: () =>
                       DetailRoute(userId: _owner.id).push<void>(context),
                 );
+
               case 2:
-                return ElevatedButton(
-                  onPressed: () => const NestedSettingsRoute().go(context),
-                  child: const Text('深い設定画面へ遷移する (Nested Settings)'),
-                );
-              case 3:
                 return ElevatedButton(
                   onPressed: () => context.go('/fake_path'),
                   child: const Text('不正なパスで遷移する'),
