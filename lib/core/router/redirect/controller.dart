@@ -17,41 +17,68 @@ class RedirectController {
 
   final Ref ref;
 
+  /// リダイレクト処理を行う
   FutureOr<String?> call(BuildContext context, GoRouterState state) async {
-    final (isMaintenanceMode, isLoggedIn) = await (
-      ref.read(isMaintenanceModeProvider.future),
-      ref.read(isLoggedInProvider.future),
-    ).wait;
+    // 現在のパスを取得
+    final fullPath = state.fullPath;
 
-    if (isMaintenanceMode) return const MaintenanceRoute().location;
+    // メンテナンスモードの状態を取得
+    final isMaintenanceMode = await ref.read(isMaintenanceModeProvider.future);
 
-    if (!isLoggedIn) return _noAuthGuard(state);
+    // メンテナンスモードの場合はメンテナンス画面へリダイレクト
+    if (isMaintenanceMode) return _maintenanceGuard(fullPath);
 
-    return _authGuard(state);
+    // ログイン状態を取得
+    final isLoggedIn = await ref.read(isLoggedInProvider.future);
+
+    // ログインしているかどうかでリダイレクト先を決定
+    if (isLoggedIn) return _authGuard(fullPath);
+
+    // ログインしていない場合のリダイレクト処理
+    return _noAuthGuard(fullPath);
   }
 
-  /// ログインしていない場合のリダイレクト処理
-  Future<String?> _noAuthGuard(GoRouterState state) async {
-    if (state.fullPath != const LoginRoute().location) {
-      return const LoginRoute().location;
+  /// メンテナンスモードの場合のリダイレクト処理
+  Future<String?> _maintenanceGuard(String? fullPath) async {
+    // メンテナンスモード中は全ての画面をメンテナンス画面にリダイレクト
+    if (fullPath != const MaintenanceRoute().location) {
+      return const MaintenanceRoute().location;
     }
+
     return null;
   }
 
   /// ログインしている場合のリダイレクト処理
-  Future<String?> _authGuard(GoRouterState state) async {
+  Future<String?> _authGuard(String? fullPath) async {
     final isTutorialChecked = await ref.read(isTutorialCheckedProvider.future);
 
-    // チュートリアルが未完了の場合はチュートリアル画面へリダイレクト
-    if (!isTutorialChecked) return const TutorialRoute().location;
+    // チュートリアルが未完了の場合はチュートリアル画面へリダイレクト;
+    if (!isTutorialChecked) return _tutorialGuard(fullPath);
 
     // チュートリアルが完了している場合はホーム画面へリダイレクト
-    if (state.fullPath == const LoginRoute().location ||
-        state.fullPath == const MaintenanceRoute().location ||
-        state.fullPath == const TutorialRoute().location) {
+    if (fullPath == const LoginRoute().location ||
+        fullPath == const MaintenanceRoute().location ||
+        fullPath == const TutorialRoute().location) {
       return const HomeRoute().location;
     }
 
+    return null;
+  }
+
+  /// チュートリアルが完了していない場合のリダイレクト処理
+  Future<String?> _tutorialGuard(String? fullPath) async {
+    // チュートリアルが未完了の場合はチュートリアル画面へリダイレクト
+    if (fullPath != const TutorialRoute().location) {
+      return const TutorialRoute().location;
+    }
+    return null;
+  }
+
+  /// ログインしていない場合のリダイレクト処理
+  Future<String?> _noAuthGuard(String? fullPath) async {
+    if (fullPath != const LoginRoute().location) {
+      return const LoginRoute().location;
+    }
     return null;
   }
 }
