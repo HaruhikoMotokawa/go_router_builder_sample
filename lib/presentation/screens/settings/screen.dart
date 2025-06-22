@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
+import 'package:go_router_builder_sample/data/repositories/auth/provider.dart';
+import 'package:go_router_builder_sample/data/repositories/maintenance/provider.dart';
 import 'package:go_router_builder_sample/domain/user.dart';
 import 'package:go_router_builder_sample/presentation/shared/help_button.dart';
 
@@ -26,7 +28,7 @@ class SettingsScreen extends ConsumerWidget {
       body: Center(
         child: ListView.separated(
           padding: const EdgeInsets.all(16),
-          itemCount: 4,
+          itemCount: 7,
           itemBuilder: (context, index) {
             switch (index) {
               case 0:
@@ -47,6 +49,24 @@ class SettingsScreen extends ConsumerWidget {
                   onPressed: () => context.go('/fake_path'),
                   child: const Text('不正なパスで遷移する'),
                 );
+              case 3:
+                return ElevatedButton(
+                  onPressed: () => ref.read(authRepositoryProvider).logout(),
+                  child: const Text('ログアウトする'),
+                );
+              case 4:
+                return ElevatedButton(
+                  onPressed: () => const MaintenanceRoute().go(context),
+                  child: const Text('MaintenanceRoute().go() してみる'),
+                );
+              case 5:
+                return ElevatedButton(
+                  onPressed: () async => ref
+                      .read(maintenanceRepositoryProvider)
+                      .setMaintenanceMode(),
+                  child: const Text('５秒で解除されるメンテナンスを発動'),
+                );
+
               default:
                 return const SizedBox.shrink();
             }
