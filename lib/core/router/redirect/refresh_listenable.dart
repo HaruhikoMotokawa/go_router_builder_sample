@@ -13,6 +13,7 @@ Raw<ValueNotifier<int>> refreshListenable(Ref ref) {
   void notify() {
     // 安全なタイミングまでちょっと待つ
     Future.microtask(() {
+      // ValueNotifierの値を更新して通知をトリガー
       notifier.value++;
     });
   }
@@ -26,7 +27,7 @@ Raw<ValueNotifier<int>> refreshListenable(Ref ref) {
   final isTutorialCheckedSub =
       ref.listen(isTutorialCheckedProvider, (_, __) => notify());
 
-  // Riverpodが破棄された時のクリーンアップ処理
+  // 万が一、このProviderが破棄された時のクリーンアップ処理
   ref.onDispose(() {
     notifier.dispose();
     isLoggedInSub.close();
