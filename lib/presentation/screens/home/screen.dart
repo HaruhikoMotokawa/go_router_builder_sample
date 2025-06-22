@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         ),
         centerTitle: false,
         actions: const [
-          HelpButton(),
+          HelpButton(isBadSelectGo: true),
         ],
       ),
       body: Center(

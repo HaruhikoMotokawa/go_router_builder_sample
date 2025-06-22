@@ -20,7 +20,7 @@ class SettingsScreen extends ConsumerWidget {
         ),
         centerTitle: false,
         actions: const [
-          HelpButton(),
+          HelpButton(isBadSelectGo: false),
         ],
       ),
       body: Center(
