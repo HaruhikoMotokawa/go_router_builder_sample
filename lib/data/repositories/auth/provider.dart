@@ -9,7 +9,3 @@ AuthRepository authRepository(Ref ref) => AuthRepository();
 
 @Riverpod(keepAlive: true)
 Stream<bool> isLoggedIn(Ref ref) => ref.read(authRepositoryProvider).isLoggedIn;
-
-@Riverpod(keepAlive: true)
-Stream<bool> isTutorialChecked(Ref ref) =>
-    ref.read(authRepositoryProvider).isTutorialChecked;

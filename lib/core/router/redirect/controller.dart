@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
 import 'package:go_router_builder_sample/data/repositories/auth/provider.dart';
 import 'package:go_router_builder_sample/data/repositories/maintenance/provider.dart';
+import 'package:go_router_builder_sample/data/repositories/tutorial/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

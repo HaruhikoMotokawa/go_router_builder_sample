@@ -6,18 +6,11 @@ class AuthRepository {
   /// ログイン状態を管理するためのストリーム。
   Stream<bool> get isLoggedIn => _authStateController.stream;
 
-  /// アプリのチュートリアルを確認したかのストリーム
-  Stream<bool> get isTutorialChecked => _tutorialCheckedController.stream;
-
   final StreamController<bool> _authStateController = StreamController<bool>();
 
-  final StreamController<bool> _tutorialCheckedController =
-      StreamController<bool>();
-
   void init() {
-    // 初期化が完了したら、初期状態を設定
-    _authStateController.sink.add(false); // 初期は未ログイン
-    _tutorialCheckedController.sink.add(false); // 初期はチュートリアル未確認
+    // 初期は未ログイン
+    _authStateController.sink.add(false);
   }
 
   Future<void> login() async {
@@ -34,10 +27,5 @@ class AuthRepository {
       // ログアウト成功したら
       _authStateController.sink.add(false);
     });
-  }
-
-  void checkTutorial() {
-    // チュートリアル確認が完了したら
-    _tutorialCheckedController.sink.add(true);
   }
 }

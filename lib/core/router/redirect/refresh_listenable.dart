@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router_builder_sample/data/repositories/auth/provider.dart';
 import 'package:go_router_builder_sample/data/repositories/maintenance/provider.dart';
+import 'package:go_router_builder_sample/data/repositories/tutorial/provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'refresh_listenable.g.dart';
