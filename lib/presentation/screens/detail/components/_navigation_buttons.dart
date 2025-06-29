@@ -1,11 +1,5 @@
 part of '../screen.dart';
 
-enum _NavigationType {
-  go,
-  push,
-  replace,
-}
-
 /// ユーザー間のナビゲーションを行うボタン
 class _NavigationButtons extends HookWidget {
   const _NavigationButtons({
