@@ -15,6 +15,8 @@ class AuthRepository {
 
   Future<void> login() async {
     // ログイン処理色々
+    // ...
+
     Future<void>.delayed(const Duration(milliseconds: 300), () {
       // ログイン成功したら
       _authStateController.sink.add(true);
@@ -22,7 +24,9 @@ class AuthRepository {
   }
 
   Future<void> logout() async {
-    // Implement sign-out logic here
+    // ログアウト処理色々
+    // ...
+
     Future<void>.delayed(const Duration(milliseconds: 300), () {
       // ログアウト成功したら
       _authStateController.sink.add(false);
