@@ -40,7 +40,7 @@ class RedirectController {
   }
 
   /// メンテナンスモードの場合のリダイレクト処理
-  Future<String?> _maintenanceGuard(String? fullPath) async {
+  String? _maintenanceGuard(String? fullPath) {
     // メンテナンスモード中は全ての画面をメンテナンス画面にリダイレクト
     if (fullPath != const MaintenanceRoute().location) {
       return const MaintenanceRoute().location;
@@ -67,7 +67,7 @@ class RedirectController {
   }
 
   /// チュートリアルが完了していない場合のリダイレクト処理
-  Future<String?> _tutorialGuard(String? fullPath) async {
+  String? _tutorialGuard(String? fullPath) {
     // チュートリアルが未完了の場合はチュートリアル画面へリダイレクト
     if (fullPath != const TutorialRoute().location) {
       return const TutorialRoute().location;
@@ -76,7 +76,7 @@ class RedirectController {
   }
 
   /// ログインしていない場合のリダイレクト処理
-  Future<String?> _noAuthGuard(String? fullPath) async {
+  String? _noAuthGuard(String? fullPath) {
     if (fullPath != const LoginRoute().location) {
       return const LoginRoute().location;
     }
