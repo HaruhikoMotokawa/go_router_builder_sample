@@ -1,11 +1,5 @@
 part of '../screen.dart';
 
-enum _NavigationType {
-  go,
-  push,
-  replace,
-}
-
 /// ユーザー間のナビゲーションを行うボタン
 class _NavigationButtons extends HookWidget {
   const _NavigationButtons({
@@ -18,7 +12,6 @@ class _NavigationButtons extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigationType = useState<_NavigationType>(_NavigationType.replace);
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 32),
       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -35,7 +28,6 @@ class _NavigationButtons extends HookWidget {
                   onPressed: _isPreviousAvailable
                       ? () => _navigateToUser(
                             context,
-                            navigationType.value,
                             shouldNext: false,
                           )
                       : null,
@@ -50,7 +42,6 @@ class _NavigationButtons extends HookWidget {
                   onPressed: _isNextAvailable
                       ? () => _navigateToUser(
                             context,
-                            navigationType.value,
                             shouldNext: true,
                           )
                       : null,
@@ -59,21 +50,6 @@ class _NavigationButtons extends HookWidget {
                 ),
               ),
             ],
-          ),
-          const Text('推奨設定は replace です'),
-          SegmentedButton<_NavigationType>(
-            segments: const <ButtonSegment<_NavigationType>>[
-              ButtonSegment(value: _NavigationType.go, label: Text('go')),
-              ButtonSegment(value: _NavigationType.push, label: Text('push')),
-              ButtonSegment(
-                value: _NavigationType.replace,
-                label: Text('replace'),
-              ),
-            ],
-            selected: <_NavigationType>{navigationType.value},
-            onSelectionChanged: (newSelection) {
-              navigationType.value = newSelection.first;
-            },
           ),
         ],
       ),
@@ -84,18 +60,10 @@ class _NavigationButtons extends HookWidget {
 extension on _NavigationButtons {
   /// ここは本当はreplaceを使うべきだが、検証のためにあえて選べるようにしている
   void _navigateToUser(
-    BuildContext context,
-    _NavigationType type, {
+    BuildContext context, {
     required bool shouldNext,
   }) {
     final userId = shouldNext ? currentUserId + 1 : currentUserId - 1;
-    switch (type) {
-      case _NavigationType.go:
-        DetailRoute(userId: userId).go(context);
-      case _NavigationType.push:
-        DetailRoute(userId: userId).push<void>(context);
-      case _NavigationType.replace:
-        DetailRoute(userId: userId).replace(context);
-    }
+    DetailRoute(userId: userId).replace(context);
   }
 }

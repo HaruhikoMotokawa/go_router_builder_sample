@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
 import 'package:go_router_builder_sample/domain/user.dart';
-import 'package:go_router_builder_sample/presentation/shared/help_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -17,8 +16,11 @@ class HomeScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: false,
-        actions: const [
-          HelpButton(isBadSelectGo: true),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.help_outline),
+            onPressed: () => const HelpRoute().push<void>(context),
+          ),
         ],
       ),
       body: Center(

@@ -4,15 +4,21 @@ import 'package:go_router_builder_sample/presentation/screens/app_root/screen.da
 import 'package:go_router_builder_sample/presentation/screens/detail/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/help/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/home/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/login/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/maintenance/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/navigation/screen.dart';
 import 'package:go_router_builder_sample/presentation/screens/settings/screen.dart';
+import 'package:go_router_builder_sample/presentation/screens/tutorial/screen.dart';
 
 part '_route_data/_branch_data.dart';
 part '_route_data/_detail_route.dart';
 part '_route_data/_help_route.dart';
 part '_route_data/_home_route.dart';
+part '_route_data/_login_route.dart';
+part '_route_data/_maintenance_route.dart';
 part '_route_data/_navigation_shell_route.dart';
 part '_route_data/_settings_route.dart';
+part '_route_data/_tutorial_route.dart';
 part 'route.g.dart';
 
 /// アプリケーション全体のナビゲーションを管理するためのキー。
@@ -54,6 +60,18 @@ final rootNavigationKey = GlobalKey<NavigatorState>();
           ],
         ),
       ],
+    ),
+    TypedGoRoute<LoginRoute>(
+      path: LoginRoute.path,
+      name: LoginRoute.name,
+    ),
+    TypedGoRoute<MaintenanceRoute>(
+      path: MaintenanceRoute.path,
+      name: MaintenanceRoute.name,
+    ),
+    TypedGoRoute<TutorialRoute>(
+      path: TutorialRoute.path,
+      name: TutorialRoute.name,
     ),
   ],
 )
