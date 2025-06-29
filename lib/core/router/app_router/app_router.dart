@@ -17,7 +17,7 @@ GoRouter appRouter(Ref ref) {
     initialLocation: const LoginRoute().location,
     routes: $appRoutes,
     refreshListenable: ref.read(refreshListenableProvider),
-    redirect: ref.read(redirectControllerProvider).call,
+    redirect: (_, state) => ref.read(redirectControllerProvider).call(state),
     errorPageBuilder: (context, state) => const MaterialPage(
       child: _ErrorPage(),
     ),

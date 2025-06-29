@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_builder_sample/core/router/route/route.dart';
@@ -19,7 +18,7 @@ class RedirectController {
   final Ref ref;
 
   /// リダイレクト処理を行う
-  FutureOr<String?> call(BuildContext context, GoRouterState state) async {
+  FutureOr<String?> call(GoRouterState state) async {
     // 現在のパスを取得
     final fullPath = state.fullPath;
 
